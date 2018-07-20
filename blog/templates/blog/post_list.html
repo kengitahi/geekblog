@@ -1,36 +1,15 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'blog/base.html' %}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Home - Geek Blog</title>
-</head>
-
-<body>
-    <div>
-        <h1>
-            <a href="/">Geek Blog</a>
-        </h1>
-    </div>
-
+{% block content %}
     {% for post in posts %}
-    <div>
-        <h1>
-            <a href="">{{ post.title }}</a>
-        </h1>
-        <p>
-            Published: {{ post.published_date }}
-        </p>
-        <p>
-            {{ post.text |linebreaksbr }}
-        </p>
-        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quam autem vitae esse totam harum, similique ab eligendi nisi.
-        Quaerat ipsa aperiam ipsum recusandae, magni consequatur laborum optio quos, a sint aliquid non dolores tempora.
-        Natus dolore laborum, architecto quia optio quis recusandae cum a aut impedit, ea sit, nesciunt iste!
-    </div>
-    {% endfor %}
-</body>
-
-</html>
+        <div class="post mb-5">
+            <h1>
+                <a href="{% url 'post_detail' pk=post.pk %}">{{ post.title }}</a>
+            </h1>
+            <div class="date">
+                <p>Published: {{ post.published_date }}</p>
+            </div>
+            <p>{{ post.text|linebreaksbr }}</p>
+        </div>
+    {% endfor %} 
+{% endblock %}
